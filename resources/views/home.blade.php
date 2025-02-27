@@ -4,6 +4,7 @@
 
 @section('styles')
 <style>
+    /* Hero Section dengan Background Image */
     .hero-section {
         height: 100vh;
         width: 100%;
@@ -22,16 +23,46 @@
         color: white;
         max-width: 800px;
         padding: 0 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s ease forwards;
+        position: relative;
+        z-index: 10;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .hero-btn {
         padding: 1rem 3rem;
         font-size: 1.25rem;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
 
     .hero-btn:hover {
         transform: scale(1.05);
+    }
+
+    .hero-btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .hero-btn:hover::after {
+        transform: translateX(0);
     }
 
     .scroll-down {
@@ -42,6 +73,7 @@
         color: white;
         cursor: pointer;
         animation: bounce 2s infinite;
+        z-index: 10;
     }
 
     @keyframes bounce {
@@ -56,123 +88,387 @@
         }
     }
 
-    .feature-section {
-        padding: 5rem 0;
-        background-color: white;
+    /* Weather Widget Styles */
+    .weather-widget-section {
+        background-color: var(--sage, #A3B18A);
+        padding: 1rem 0;
+        position: relative;
+        z-index: 5;
     }
-
-    .feature-card {
-        padding: 2rem;
-        text-align: center;
-        transition: transform 0.3s ease;
+    
+    .weather-icon {
+        font-size: 2rem;
     }
-
-    .feature-card:hover {
-        transform: translateY(-10px);
+    
+    .weather-info {
+        text-align: left;
     }
-
-    .feature-icon {
-        font-size: 2.5rem;
-        color: var(--fern-green);
-        margin-bottom: 1.5rem;
-    }
-
-    .testimonial-section {
-        background-color: var(--sage);
-        padding: 5rem 0;
-    }
-
-    .testimonial-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 10px;
-        margin: 1rem;
-    }
-
-    .testimonial-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease-in-out;
-    }
-
-
-    .stats-section {
-        padding: 5rem 0;
-        background-color: var(--brunswick-green);
-        color: white;
-    }
-
-    .stat-item {
-        text-align: center;
-        padding: 2rem;
-    }
-
-    .stat-number {
-        font-size: 2.5rem;
+    
+    .temperature {
+        font-size: 1.2rem;
         font-weight: bold;
-        margin-bottom: 1rem;
     }
+    
+    .day-mode .fa-sun {
+        display: inline-block;
+    }
+    
+    .day-mode .fa-moon {
+        display: none;
+    }
+    
+    .night-mode .fa-sun {
+        display: none;
+    }
+    
+    .night-mode .fa-moon {
+        display: inline-block;
+    }
+
+    /* Pricing Section */
     .pricing-section {
-        background-color: var(--timberwolf);
+        background-color: var(--brunswick-green, #344E41);
+        color: white;
         padding: 5rem 0;
     }
 
     .pricing-card {
+        background-color: var(--sage, #A3B18A);
+        border-radius: 15px;
+        padding: 3rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-10px);
+    }
+
+    /* Immersive Experience Section */
+    .immersive-section {
+        padding: 0;
+        position: relative;
+        height: 80vh;
+        overflow: hidden;
+    }
+    
+    .parallax-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/jeep-hero.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        transform: translateZ(-1px) scale(2);
+    }
+    
+    .immersive-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+        display: flex;
+        align-items: flex-end;
+    }
+    
+    .immersive-content {
+        width: 100%;
+        padding: 3rem;
+        color: white;
+        transform: translateY(50px);
+        transition: transform 0.5s ease 0.2s;
+    }
+    
+    .immersive-section:hover .immersive-content {
+        transform: translateY(0);
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+        padding: 5rem 0;
         background-color: white;
-        border-radius: 10px;
-        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gallery-section::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: var(--brunswick-green, #344E41);
+        clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+
+    .gallery-header {
         text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+    }
+
+    .photo-stack {
+        position: relative;
+        height: 400px;
+        width: 100%;
+        perspective: 1000px;
+    }
+
+    .photo-card {
+        position: absolute;
+        width: 80%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .photo-card-1 {
+        transform: translateZ(0) rotate(-5deg);
+        background-image: url('/images/jeep-hero.jpg');
+        z-index: 3;
+    }
+
+    .photo-card-2 {
+        transform: translateZ(-50px) translateX(40px) rotate(5deg);
+        background-image: url('/images/jeep-hero.jpg');
+        z-index: 2;
+    }
+
+    .photo-card-3 {
+        transform: translateZ(-100px) translateX(80px) rotate(10deg);
+        background-image: url('/images/jeep-hero.jpg');
+        z-index: 1;
+    }
+
+    .photo-stack:hover .photo-card-1 {
+        transform: translateZ(50px) rotate(0);
+    }
+
+    .photo-stack:hover .photo-card-2 {
+        transform: translateZ(0) translateX(20px) rotate(0);
+    }
+
+    .photo-stack:hover .photo-card-3 {
+        transform: translateZ(-50px) translateX(40px) rotate(0);
+    }
+
+    .gallery-content {
+        padding: 2rem;
+    }
+
+    .gallery-btn {
+        display: inline-block;
+        background-color: var(--brunswick-green, #344E41);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .gallery-btn:hover {
+        background-color: var(--fern-green, #588157);
+        transform: translateY(-3px);
+        color: white;
+    }
+
+    /* Wave separator */
+    .wave-separator {
+        height: 100px;
+        width: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23344E41' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,245.3C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-size: cover;
+        transform: rotate(180deg);
+    }
+
+    /* Instagram Card Styles */
+    .instagram-card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: white;
+        margin-bottom: 20px;
+    }
+    
+    .instagram-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .instagram-image-container {
+        position: relative;
+        padding-bottom: 100%; /* Square aspect ratio */
+        overflow: hidden;
+    }
+    
+    .instagram-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .instagram-card:hover .instagram-image {
+        transform: scale(1.05);
+    }
+    
+    .instagram-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        color: white;
+    }
+    
+    .instagram-card:hover .instagram-overlay {
+        opacity: 1;
+    }
+    
+    .instagram-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .instagram-play-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .instagram-caption {
+        padding: 0 15px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    
+    .instagram-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 15px;
+        font-size: 0.85rem;
+        color: #555;
+    }
+    
+    .instagram-date {
+        font-weight: 500;
+    }
+    
+    .instagram-type {
+        color: #888;
+    }
+
+    /* Simple Animations */
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
     }
 </style>
 @endsection
 
 @section('content')
+<!-- Hero Section dengan Background Image -->
 <div class="hero-section">
     <div class="hero-content">
         <h1 class="display-3 mb-4">Experience Adventure</h1>
         <p class="lead mb-4">Discover the thrill of off-road exploration with our premium jeep tours</p>
-        <a href="{{ route('booking') }}" class="btn btn-primary hero-btn">Book Now
-        </a>
+        <a href="{{ route('booking.form') }}" class="btn btn-primary hero-btn">Book Now</a>
     </div>
     <div class="scroll-down">
         <i class="fas fa-chevron-down fa-2x"></i>
     </div>
 </div>
 
-<section class="pricing-section" style="background-color: var(--brunswick-green); color: white; padding: 5rem 0;">
+<!-- Weather Widget (Dinamis berdasarkan waktu) -->
+<section class="weather-widget-section py-3" id="weather-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <h4 class="mb-0 text-white"><i class="fas fa-cloud-sun me-2" id="weather-main-icon"></i> Current Weather</h4>
+            </div>
+            <div class="col-md-8">
+                <div class="d-flex align-items-center justify-content-md-end justify-content-center">
+                    <div class="weather-icon me-3">
+                        <i class="fas fa-sun fa-2x text-warning" id="weather-icon"></i>
+                        <i class="fas fa-moon fa-2x text-light" id="night-icon" style="display: none;"></i>
+                    </div>
+                    <div class="weather-info text-white">
+                        <div class="temperature fw-bold">28°C</div>
+                        <div class="condition" id="weather-condition">Sunny</div>
+                    </div>
+                    <div class="weather-details ms-4 text-white">
+                        <div class="humidity"><i class="fas fa-tint me-1"></i> 70%</div>
+                        <div class="wind"><i class="fas fa-wind me-1"></i> 12 km/h</div>
+                    </div>
+                    <div class="weather-forecast ms-4">
+                        <span class="badge bg-light text-dark me-1">Perfect for Jeep Tours!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section">
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <div class="pricing-card" style="
-                    background-color: var(--sage);
-                    border-radius: 15px;
-                    padding: 3rem;
-                    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                    position: relative;
-                    overflow: hidden;
-                ">
+                <div class="pricing-card">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h2 class="mb-4" style="color: var(--brunswick-green);">Jeep Adventure Tour</h2>
+                            <h2 class="mb-4" style="color: var(--brunswick-green, #344E41);">Jeep Adventure Tour</h2>
                             <div class="pricing-detail mb-3">
-                                <i class="fas fa-ticket-alt me-2" style="color: var(--brunswick-green);"></i>
+                                <i class="fas fa-ticket-alt me-2" style="color: var(--brunswick-green, #344E41);"></i>
                                 <span class="fw-bold">Price: Rp 45,000</span>
                             </div>
                             <div class="pricing-detail mb-3">
-                                <i class="fas fa-clock me-2" style="color: var(--brunswick-green);"></i>
+                                <i class="fas fa-clock me-2" style="color: var(--brunswick-green, #344E41);"></i>
                                 <span class="fw-bold">Hours: 08:00 - 19:00</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="sessions-container">
-                                <h4 class="mb-3" style="color: var(--brunswick-green);">Availability Sessions</h4>
+                                <h4 class="mb-3" style="color: var(--brunswick-green, #344E41);">Availability Sessions</h4>
                                 <div class="d-flex flex-wrap justify-content-center">
                                     @php $sessions = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'] @endphp
                                     @foreach($sessions as $session)
                                         <span class="badge bg-light text-dark m-1" style="
                                             background-color: white !important;
-                                            color: var(--brunswick-green) !important;
+                                            color: var(--brunswick-green, #344E41) !important;
                                             padding: 0.5rem 0.75rem;
                                             font-size: 0.8rem;
                                             border-radius: 20px;
@@ -188,58 +484,181 @@
     </div>
 </section>
 
-<section class="feature-section">
+    <!-- Immersive Experience Section with Parallax
+    <section class="immersive-section">
+        <div class="parallax-bg"></div>
+        <div class="immersive-overlay">
+            <div class="container immersive-content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="mb-4">Immersive Jeep Experience</h2>
+                        <p class="lead">Feel the thrill of off-road adventure as you traverse through breathtaking landscapes and challenging terrains.</p>
+                        <a href="{{ route('gallery') }}" class="btn btn-light mt-3">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+<!-- Gallery Section with Stacked Photos -->
+<section class="gallery-section">
     <div class="container">
-        <h2 class="text-center mb-5">Why Choose Us</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-map-marked-alt feature-icon"></i>
-                    <h3>Expert Guides</h3>
-                    <p>Professional guides with years of experience and local knowledge</p>
+        <div class="gallery-header">
+            <h2>Capture the Moments</h2>
+            <p class="lead">Take a peek at some of our unforgettable adventures</p>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="photo-stack">
+                    <div class="photo-card photo-card-1"></div>
+                    <div class="photo-card photo-card-2"></div>
+                    <div class="photo-card photo-card-3"></div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-car feature-icon"></i>
-                    <h3>Modern Fleet</h3>
-                    <p>Well-maintained vehicles equipped with safety features</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-mountain feature-icon"></i>
-                    <h3>Scenic Routes</h3>
-                    <p>Carefully selected trails with breathtaking views</p>
+            <div class="col-lg-6">
+                <div class="gallery-content">
+                    <h3>Breathtaking Photo Opportunities</h3>
+                    <p>Our jeep tours take you through some of the most stunning landscapes that provide perfect photo opportunities. From rocky terrains to lush forests, every journey is a photographer's dream.</p>
+                    <p>Our gallery features moments captured by our adventurers during their journeys. Each photo tells a story of exploration, thrill, and natural beauty that awaits you.</p>
+                    <a href="{{ route('gallery') }}" class="gallery-btn">See More Photos <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="testimonial-section">
+<!-- Instagram Feed Section (Using Embed) -->
+<section class="instagram-section py-5" style="background-color: white;">
     <div class="container">
-        <h2 class="text-center mb-5">What Our Adventurers Say</h2>
-        <div class="row">
+        <div class="text-center mb-5">
+            <h2 class="mb-3">Follow Our Adventures</h2>
+            <p class="lead">Check out our latest posts on Instagram <a href="https://instagram.com/jeeptoursurabaya" target="_blank" class="text-decoration-none">@jeeptoursurabaya</a></p>
+        </div>
+        
+        <div class="row justify-content-center">
             <div class="col-md-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="mb-3">"An unforgettable experience! The guides were knowledgeable and friendly."</p>
-                    <strong>- John Doe</strong>
-                </div>
+                <!-- Post/Reel 1 -->
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DFWvJzrSCwl/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:100%; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="mb-3">"Best adventure tour I've ever been on. Will definitely come back!"</p>
-                    <strong>- Jane Smith</strong>
-                </div>
+                <!-- Post/Reel 2 -->
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DFU_BbbSdnK/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:100%; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="testimonial-card">
-                    <p class="mb-3">"Amazing views and professional service. Highly recommended!"</p>
-                    <strong>- Mike Johnson</strong>
-                </div>
+                <!-- Post/Reel 3 -->
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DCvCGr7SinU/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:100%; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                </blockquote>
             </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="https://instagram.com/jeeptoursurabaya" target="_blank" class="btn btn-outline-dark">
+                <i class="fab fa-instagram me-2"></i> Follow Us on Instagram
+            </a>
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+<!-- Instagram Embed API -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scroll for the arrow down button
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.querySelector('.pricing-section').offsetTop,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Parallax effect for immersive section
+        window.addEventListener('scroll', function() {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            const scrollPosition = window.pageYOffset;
+            if (parallaxBg) {
+                parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            }
+        });
+        
+        // Animation for elements when they come into view
+        const animatedElements = document.querySelectorAll('.photo-stack');
+        
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    elementObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        animatedElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            elementObserver.observe(element);
+        });
+
+        // Support for Instagram overlay on touch devices
+        document.querySelectorAll('.instagram-item').forEach(item => {
+            if (item) {
+                item.addEventListener('touchstart', function() {
+                    const overlay = this.querySelector('.instagram-overlay');
+                    if (overlay) {
+                        overlay.style.opacity = '1';
+                        
+                        // Hide overlay after 2 seconds
+                        setTimeout(() => {
+                            overlay.style.opacity = '0';
+                        }, 2000);
+                    }
+                });
+            }
+        });
+
+        // Dinamis Weather berdasarkan waktu
+        function updateWeatherBasedOnTime() {
+            const now = new Date();
+            const hour = now.getHours();
+            const weatherIconElement = document.getElementById('weather-icon');
+            const nightIconElement = document.getElementById('night-icon');
+            const weatherMainIconElement = document.getElementById('weather-main-icon');
+            const weatherConditionElement = document.getElementById('weather-condition');
+            const weatherSection = document.getElementById('weather-section');
+            
+            // Cek apakah siang atau malam (6:00 - 18:00 = siang)
+            if (hour >= 6 && hour < 18) {
+                // Siang hari
+                if (weatherSection) weatherSection.classList.add('day-mode');
+                if (weatherSection) weatherSection.classList.remove('night-mode');
+                
+                if (weatherIconElement) weatherIconElement.style.display = 'inline-block';
+                if (nightIconElement) nightIconElement.style.display = 'none';
+                if (weatherMainIconElement) weatherMainIconElement.className = 'fas fa-cloud-sun me-2';
+                if (weatherConditionElement) weatherConditionElement.textContent = 'Sunny';
+            } else {
+                // Malam hari
+                if (weatherSection) weatherSection.classList.add('night-mode');
+                if (weatherSection) weatherSection.classList.remove('day-mode');
+                
+                if (weatherIconElement) weatherIconElement.style.display = 'none';
+                if (nightIconElement) nightIconElement.style.display = 'inline-block';
+                if (weatherMainIconElement) weatherMainIconElement.className = 'fas fa-cloud-moon me-2';
+                if (weatherConditionElement) weatherConditionElement.textContent = 'Clear Night';
+            }
+        }
+        
+        // Panggil fungsi saat halaman dimuat
+        updateWeatherBasedOnTime();
+        
+        // Update setiap jam
+        setInterval(updateWeatherBasedOnTime, 3600000); // 1 jam = 3600000 ms
+    });
+</script>
 @endsection

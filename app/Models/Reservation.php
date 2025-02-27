@@ -12,13 +12,17 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    
+
     protected $fillable = [
         'session_id',
         'name',
+        'email',
+        'telp',
         'city',
         'count',
         'price',
-        'date'
+        'payment_status'
     ];
 
     public function invoice() : HasOne {

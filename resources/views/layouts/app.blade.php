@@ -3,46 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Jeep Adventure - @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script async src="//www.instagram.com/embed.js"></script>
 
     <style>
         :root {
             --silver: #c6c3baff;
-            --timberwolf: #dad7cdff;
+            --timberwolf: #f0efe9;
             --sage: #a3b18aff;
             --fern-green: #588157ff;
             --hunter-green: #3a5a40ff;
             --brunswick-green: #344e41ff;
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--timberwolf);
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--fern-green);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--hunter-green);
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--timberwolf);
+            padding-top: 60px;
+        }
+
+        /* Navbar Styling - Simplified */
         .navbar {
             background-color: var(--brunswick-green);
-            padding: 1rem 2rem;
+            padding: 0.6rem 1rem;
         }
 
         .navbar-brand {
-            color: var(--timberwolf) !important;
+            color: white !important;
             font-weight: 600;
             font-size: 1.5rem;
         }
 
         .nav-link {
-            color: var(--timberwolf) !important;
-            transition: color 0.3s ease;
+            color: white !important;
+            transition: color 0.3s;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
-            margin: 0 0.2rem;
         }
 
         .nav-link:hover {
+            color: var(--sage) !important;
+        }
+
+        .nav-link.active {
             color: var(--sage) !important;
         }
 
@@ -54,14 +79,112 @@
 
         .nav-link.booking-link:hover {
             background-color: var(--hunter-green);
-            color: white !important;
         }
 
+        /* Footer Styling */
         .footer {
             background-color: var(--brunswick-green);
-            color: var(--timberwolf);
-            padding: 2rem 0;
+            color: white;
+            padding: 3rem 0 1rem;
             margin-top: 3rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--fern-green), var(--hunter-green));
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--sage);
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--sage);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer .list-unstyled a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer .list-unstyled a:before {
+            content: "\f054";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.7rem;
+            color: var(--sage);
+            transition: all 0.3s;
+        }
+
+        .footer .list-unstyled a:hover {
+            color: var(--sage);
+            padding-left: 20px;
+        }
+
+        .footer .list-unstyled a:hover:before {
+            left: 5px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 12px;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: white !important;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--fern-green);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 0;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .btn-primary {
@@ -84,6 +207,7 @@
     
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">Jeep Adventure</a>
@@ -105,46 +229,62 @@
                         <a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link booking-link" href="{{ route('booking') }}">Book Now</a>
+                        <a class="nav-link booking-link" href="{{ route('booking.form') }}">Book Now</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    @yield('content')
+    <!-- Main Content -->
+    <main>
+        @yield('content')
+    </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Jeep Adventure</h5>
-                    <p>Experience the thrill of off-road adventure with our premium jeep tours.</p>
+                    <p>Experience the thrill of off-road adventure with our premium jeep tours. Explore the beauty of nature with our experienced guides and well-maintained vehicles.</p>
                     <div class="social-links mt-3">
-                        <a href="" class="text-light me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('home') }}" class="text-light">Home</a></li>
-                        <li><a href="{{ route('gallery') }}" class="text-light">Gallery</a></li>
-                        <li><a href="{{ route('faq') }}" class="text-light">FAQ</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-light">Contact Us</a></li>
-                        <li><a href="{{ route('booking') }}" class="text-light">Book Now</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                        <li><a href="{{ route('faq') }}">FAQ</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                        <li><a href="{{ route('booking.form') }}">Book Now</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Contact Info</h5>
-                    <p><i class="fas fa-envelope me-2"></i> jeep@gmail.com</p>
-                    <p><i class="fas fa-phone me-2"></i> (+62) 87778716996 </p>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Jl. Rajawali Jl. Jembatan Merah, Kota Lama, Kec. Krembangan, Surabaya, Jawa Timur</p>
+                    <p>Email: jeep@gmail.com</p>
+                    <p>Phone: (+62) 87778716996</p>
+                    <p>Address: Jl. Rajawali Jl. Jembatan Merah, Kota Lama, Kec. Krembangan, Surabaya, Jawa Timur</p>
+                    <a href="{{ route('contact') }}" class="btn btn-primary mt-2">Get In Touch</a>
                 </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <div class="container">
+                <p class="mb-0">&copy; {{ date('Y') }} Jeep Adventure. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -21,11 +21,11 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('name');
             $table->string('email');
-            $table->integer('telp');
+            $table->string('telp');
             $table->string('city');
             $table->integer('count');
             $table->double('price');
-            $table->date('date');
+            $table->enum('payment_status', ['pending', 'paid', 'failed', 'cancelled'])->default('pending'); //tambahan ini untuk pembayaran midtrans
             $table->timestamps();
         });
     }
