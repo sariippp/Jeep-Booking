@@ -143,7 +143,7 @@
 <!-- Contact Header -->
 <div class="contact-header">
     <div class="container">
-        <h1>Contact Us</h1>
+        <h1>Hubungi Kami</h1>
         <p class="lead">Feedback akan dibalas paling lambat 3x24 jam via email.</p>
     </div>
 </div>
@@ -151,7 +151,7 @@
 <div class="container">
     <!-- Contact Section Title -->
     <div class="contact-section">
-        <h2>Get In Touch</h2>
+        <h2>Kirim Pesan</h2>
     </div>
     
     <div class="row">
@@ -162,7 +162,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Nama</label>
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -171,14 +171,14 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Subject</label>
+                        <label class="form-label">Subjek</label>
                         <input type="text" name="subject" class="form-control" required>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Message</label>
+                        <label class="form-label">Pesan</label>
                         <textarea class="form-control" name="message" rows="6" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
                 </form>
             </div>
         </div>
@@ -186,12 +186,12 @@
         <!-- Contact Information -->
         <div class="col-lg-5">
             <div class="contact-info">
-                <h3>Our Information</h3>
+                <h3>Informasi Kami</h3>
         
                 <p>
                     <i class="fas fa-map-marker-alt"></i>
                     <span>
-                        <strong>Address</strong>
+                        <strong>Alamat</strong>
                         Jl. Rajawali Jl. Jembatan Merah, Kota Lama,<br>
                         Kec. Krembangan, Surabaya, Jawa Timur
                     </span>
@@ -200,7 +200,7 @@
                 <p>
                     <i class="fas fa-phone"></i>
                     <span>
-                        <strong>Phone</strong>
+                        <strong>Telepon</strong>
                         (+62) 87778716996
                     </span>
                 </p>
@@ -216,8 +216,8 @@
                 <p>
                     <i class="fas fa-clock"></i>
                     <span>
-                        <strong>Business Hours</strong>
-                        Monday - Sunday: 8:00 AM - 6:00 PM
+                        <strong>Jam Operasional</strong>
+                        Senin - Minggu: 08:00 - 18:00 WIB
                     </span>
                 </p>
             </div>

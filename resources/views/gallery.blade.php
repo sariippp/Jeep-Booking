@@ -126,8 +126,8 @@
 @section('content')
 <div class="gallery-header">
     <div class="container">
-        <h1>Our Adventure Gallery</h1>
-        <p class="lead">Explore moments from our exciting jeep tours through mountains, forests, and rivers</p>
+        <h1>Galeri</h1>
+        <p class="lead">Momen terbaik dari jeep kami</p>
     </div>
 </div>
 

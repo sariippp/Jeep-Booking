@@ -119,15 +119,15 @@
 <!-- FAQ Header -->
 <div class="faq-header">
     <div class="container">
-        <h1>Frequently Asked Questions</h1>
-        <p class="lead">Find answers to common questions about our Jeep Adventure tours and services</p>
+        <h1>Pertanyaan yang Sering Diajukan</h1>
+        <p class="lead">Temukan jawaban untuk pertanyaan umum tentang layanan Jeep kami</p>
     </div>
 </div>
 
 <div class="container">
     <!-- FAQ Section Title -->
     <div class="faq-section">
-        <h2>Common Questions</h2>
+        <h2>Pertanyaan Umum</h2>
     </div>
     
 
@@ -154,7 +154,7 @@
             </h2>
             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Untuk melakukan pemesanan tur, Anda dapat mengklik tombol "Book Now" di situs web kami atau langsung menghubungi kami melalui nomor telepon atau email yang tertera. Kami menyarankan untuk melakukan pemesanan setidaknya 3 hari sebelum tanggal keberangkatan untuk memastikan ketersediaan. Setelah pemesanan, Anda akan menerima konfirmasi beserta detail tur melalui email.
+                    Untuk melakukan pemesanan tur, Anda dapat mengklik tombol "Pesan Sekarang" di situs web kami atau langsung menghubungi kami melalui nomor telepon atau email yang tertera. Kami menyarankan untuk melakukan pemesanan setidaknya 3 hari sebelum tanggal keberangkatan untuk memastikan ketersediaan. Setelah pemesanan, Anda akan menerima konfirmasi beserta detail tur melalui email.
                 </div>
             </div>
         </div>

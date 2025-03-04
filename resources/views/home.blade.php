@@ -88,43 +88,6 @@
         }
     }
 
-    /* Weather Widget Styles */
-    .weather-widget-section {
-        background-color: var(--sage, #A3B18A);
-        padding: 1rem 0;
-        position: relative;
-        z-index: 5;
-    }
-    
-    .weather-icon {
-        font-size: 2rem;
-    }
-    
-    .weather-info {
-        text-align: left;
-    }
-    
-    .temperature {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-    
-    .day-mode .fa-sun {
-        display: inline-block;
-    }
-    
-    .day-mode .fa-moon {
-        display: none;
-    }
-    
-    .night-mode .fa-sun {
-        display: none;
-    }
-    
-    .night-mode .fa-moon {
-        display: inline-block;
-    }
-
     /* Pricing Section */
     .pricing-section {
         background-color: var(--brunswick-green, #344E41);
@@ -403,44 +366,14 @@
 <!-- Hero Section dengan Background Image -->
 <div class="hero-section">
     <div class="hero-content">
-        <h1 class="display-3 mb-4">Experience Adventure</h1>
-        <p class="lead mb-4">Discover the thrill of off-road exploration with our premium jeep tours</p>
-        <a href="{{ route('booking.form') }}" class="btn btn-primary hero-btn">Book Now</a>
+        <h1 class="display-3 mb-4">Nikmati Petualangan</h1>
+        <p class="lead mb-4">Rasakan sensasi eksplorasi off-road dengan tur jeep premium kami</p>
+        <a href="{{ route('booking.form') }}" class="btn btn-primary hero-btn">Pesan Sekarang</a>
     </div>
     <div class="scroll-down">
         <i class="fas fa-chevron-down fa-2x"></i>
     </div>
 </div>
-
-<!-- Weather Widget (Dinamis berdasarkan waktu) -->
-<section class="weather-widget-section py-3" id="weather-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <h4 class="mb-0 text-white"><i class="fas fa-cloud-sun me-2" id="weather-main-icon"></i> Current Weather</h4>
-            </div>
-            <div class="col-md-8">
-                <div class="d-flex align-items-center justify-content-md-end justify-content-center">
-                    <div class="weather-icon me-3">
-                        <i class="fas fa-sun fa-2x text-warning" id="weather-icon"></i>
-                        <i class="fas fa-moon fa-2x text-light" id="night-icon" style="display: none;"></i>
-                    </div>
-                    <div class="weather-info text-white">
-                        <div class="temperature fw-bold">28°C</div>
-                        <div class="condition" id="weather-condition">Sunny</div>
-                    </div>
-                    <div class="weather-details ms-4 text-white">
-                        <div class="humidity"><i class="fas fa-tint me-1"></i> 70%</div>
-                        <div class="wind"><i class="fas fa-wind me-1"></i> 12 km/h</div>
-                    </div>
-                    <div class="weather-forecast ms-4">
-                        <span class="badge bg-light text-dark me-1">Perfect for Jeep Tours!</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Pricing Section -->
 <section class="pricing-section">
@@ -450,19 +383,23 @@
                 <div class="pricing-card">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h2 class="mb-4" style="color: var(--brunswick-green, #344E41);">Jeep Adventure Tour</h2>
+                            <h2 class="mb-4" style="color: var(--brunswick-green, #344E41);">Wisata Jeep Adventure</h2>
                             <div class="pricing-detail mb-3">
                                 <i class="fas fa-ticket-alt me-2" style="color: var(--brunswick-green, #344E41);"></i>
-                                <span class="fw-bold">Price: Rp 45,000</span>
+                                <span class="fw-bold">Harga: Rp 45.000</span>
                             </div>
                             <div class="pricing-detail mb-3">
                                 <i class="fas fa-clock me-2" style="color: var(--brunswick-green, #344E41);"></i>
-                                <span class="fw-bold">Hours: 08:00 - 19:00</span>
+                                <span class="fw-bold">Jam Operasional: 08:00 - 19:00</span>
+                            </div>
+                            <div class="pricing-detail mb-3">
+                                <i class="fas fa-calendar-alt me-2" style="color: var(--brunswick-green, #344E41);"></i>
+                                <span class="fw-bold">Hari Buka: Sabtu & Minggu</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="sessions-container">
-                                <h4 class="mb-3" style="color: var(--brunswick-green, #344E41);">Availability Sessions</h4>
+                                <h4 class="mb-3" style="color: var(--brunswick-green, #344E41);">Sesi Tersedia</h4>
                                 <div class="d-flex flex-wrap justify-content-center">
                                     @php $sessions = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'] @endphp
                                     @foreach($sessions as $session)
@@ -504,8 +441,8 @@
 <section class="gallery-section">
     <div class="container">
         <div class="gallery-header">
-            <h2>Capture the Moments</h2>
-            <p class="lead">Take a peek at some of our unforgettable adventures</p>
+            <h2>Abadikan Momen Anda</h2>
+            <p class="lead">Lihat sekilas petualangan tak terlupakan bersama kami</p>
         </div>
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -517,10 +454,10 @@
             </div>
             <div class="col-lg-6">
                 <div class="gallery-content">
-                    <h3>Breathtaking Photo Opportunities</h3>
-                    <p>Our jeep tours take you through some of the most stunning landscapes that provide perfect photo opportunities. From rocky terrains to lush forests, every journey is a photographer's dream.</p>
-                    <p>Our gallery features moments captured by our adventurers during their journeys. Each photo tells a story of exploration, thrill, and natural beauty that awaits you.</p>
-                    <a href="{{ route('gallery') }}" class="gallery-btn">See More Photos <i class="fas fa-arrow-right ms-2"></i></a>
+                    <h3>Kesempatan Foto yang Menakjubkan</h3>
+                    <p>Tur jeep kami membawa Anda melalui beberapa pemandangan paling menakjubkan yang memberikan kesempatan foto sempurna. Dari medan berbatu hingga hutan yang rimbun, setiap perjalanan adalah impian fotografer.</p>
+                    <p>Galeri kami menampilkan momen yang diabadikan oleh para petualang selama perjalanan mereka. Setiap foto menceritakan kisah eksplorasi, sensasi, dan keindahan alam yang menanti Anda.</p>
+                    <a href="{{ route('gallery') }}" class="gallery-btn">Lihat Lebih Banyak Foto <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </div>
@@ -621,44 +558,6 @@
                 });
             }
         });
-
-        // Dinamis Weather berdasarkan waktu
-        function updateWeatherBasedOnTime() {
-            const now = new Date();
-            const hour = now.getHours();
-            const weatherIconElement = document.getElementById('weather-icon');
-            const nightIconElement = document.getElementById('night-icon');
-            const weatherMainIconElement = document.getElementById('weather-main-icon');
-            const weatherConditionElement = document.getElementById('weather-condition');
-            const weatherSection = document.getElementById('weather-section');
-            
-            // Cek apakah siang atau malam (6:00 - 18:00 = siang)
-            if (hour >= 6 && hour < 18) {
-                // Siang hari
-                if (weatherSection) weatherSection.classList.add('day-mode');
-                if (weatherSection) weatherSection.classList.remove('night-mode');
-                
-                if (weatherIconElement) weatherIconElement.style.display = 'inline-block';
-                if (nightIconElement) nightIconElement.style.display = 'none';
-                if (weatherMainIconElement) weatherMainIconElement.className = 'fas fa-cloud-sun me-2';
-                if (weatherConditionElement) weatherConditionElement.textContent = 'Sunny';
-            } else {
-                // Malam hari
-                if (weatherSection) weatherSection.classList.add('night-mode');
-                if (weatherSection) weatherSection.classList.remove('day-mode');
-                
-                if (weatherIconElement) weatherIconElement.style.display = 'none';
-                if (nightIconElement) nightIconElement.style.display = 'inline-block';
-                if (weatherMainIconElement) weatherMainIconElement.className = 'fas fa-cloud-moon me-2';
-                if (weatherConditionElement) weatherConditionElement.textContent = 'Clear Night';
-            }
-        }
-        
-        // Panggil fungsi saat halaman dimuat
-        updateWeatherBasedOnTime();
-        
-        // Update setiap jam
-        setInterval(updateWeatherBasedOnTime, 3600000); // 1 jam = 3600000 ms
     });
 </script>
 @endsection

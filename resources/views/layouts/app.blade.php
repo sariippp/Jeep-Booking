@@ -217,19 +217,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery</a>
+                        <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a>
+                        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Hubungi Kami</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link booking-link" href="{{ route('booking.form') }}">Book Now</a>
+                        <a class="nav-link booking-link" href="{{ route('booking.form') }}">Pesan Sekarang</a>
                     </li>
                 </ul>
             </div>
@@ -247,7 +247,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Jeep Adventure</h5>
-                    <p>Experience the thrill of off-road adventure with our premium jeep tours. Explore the beauty of nature with our experienced guides and well-maintained vehicles.</p>
+                    <p>Rasakan sensasi petualangan tur jeep premium kami. Jelajahi kota surabaya bersama pemandu berpengalaman dan kendaraan yang terawat dengan baik.</p>
                     <div class="social-links mt-3">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -257,29 +257,29 @@
                 </div>
                 
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Quick Links</h5>
+                    <h5>Tautan Cepat</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                        <li><a href="{{ route('home') }}">Beranda</a></li>
+                        <li><a href="{{ route('gallery') }}">Galeri</a></li>
                         <li><a href="{{ route('faq') }}">FAQ</a></li>
-                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                        <li><a href="{{ route('booking.form') }}">Book Now</a></li>
+                        <li><a href="{{ route('contact') }}">Hubungi Kami</a></li>
+                        <li><a href="{{ route('booking.form') }}">Pesan Sekarang</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Contact Info</h5>
+                    <h5>Informasi Kontak</h5>
                     <p>Email: jeep@gmail.com</p>
-                    <p>Phone: (+62) 87778716996</p>
-                    <p>Address: Jl. Rajawali Jl. Jembatan Merah, Kota Lama, Kec. Krembangan, Surabaya, Jawa Timur</p>
-                    <a href="{{ route('contact') }}" class="btn btn-primary mt-2">Get In Touch</a>
+                    <p>Telepon: (+62) 87778716996</p>
+                    <p>Alamat: Jl. Rajawali Jl. Jembatan Merah, Kota Lama, Kec. Krembangan, Surabaya, Jawa Timur</p>
+                    <a href="{{ route('contact') }}" class="btn btn-primary mt-2">Hubungi Kami</a>
                 </div>
             </div>
         </div>
         
         <div class="copyright">
             <div class="container">
-                <p class="mb-0">&copy; {{ date('Y') }} Jeep Adventure. All Rights Reserved.</p>
+                <p class="mb-0">&copy; {{ date('Y') }} Jeep Adventure. Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>
