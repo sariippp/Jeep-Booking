@@ -308,7 +308,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <img src="{{ asset('images/jeep-hero.jpg') }}" alt="QRIS" style="width: 60px; height: auto;">
+                            <img src="{{ asset('images/qris-logo.png') }}" alt="QRIS" style="width: 60px; height: auto;">
                             <div class="ms-3">
                                 <h5 class="mb-0">QRIS</h5>
                                 <p class="mb-0 text-muted">Pembayaran menggunakan QRIS</p>
