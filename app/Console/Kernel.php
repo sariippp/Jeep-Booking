@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
     {
         // Run every minute to check for expired reservations
         $schedule->command('reservations:check-expired')->everyMinute();
+
+        // Generate sessions untuk Sabtu-Minggu di awal bulan
+        $schedule->command('sessions:generate-monthly')->everyMinute();
     }
 
     /**

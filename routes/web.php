@@ -1,18 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('home');
@@ -31,7 +21,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 //KIRIM EMAIL
-Route::post('/contact/send', 'App\Http\Controllers\UserController@sendContactEmail')->name('contact.send');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 //HALAMAN BOOKING
 Route::get('/booking', [UserController::class, 'index'])->name('booking.form');

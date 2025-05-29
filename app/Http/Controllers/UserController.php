@@ -20,23 +20,6 @@ class UserController extends Controller
     {
         $this->midtransService = $midtransService;
     }
-
-    //Kirim Email
-    public function sendContactEmail(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-        ]);
-        
-        // Kirim email
-        Mail::to('abdurrahmanasgf88@gmail.com')->send(new ContactForm($validated));
-        
-        // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Pesan Anda telah terkirim. Kami akan membalas dalam 3x24 jam. Terima kasih!');
-    }
     
     //BOOKING
     public function index() 

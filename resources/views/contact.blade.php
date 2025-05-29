@@ -136,6 +136,24 @@
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
+
+    /* Alert styles */
+    .alert {
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+    .alert-success {
+        background-color: #d1e7dd;
+        color: #0f5132;
+        border: 1px solid #badbcc;
+    }
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #842029;
+        border: 1px solid #f5c2c7;
+    }
 </style>
 @endsection
 
@@ -158,25 +176,43 @@
         <!-- Contact Form -->
         <div class="col-lg-7 mb-4">
             <div class="contact-form">
+                {{-- Tampilkan pesan sukses --}}
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                {{-- Tampilkan pesan error validasi --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{ route('contact.send') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Nama</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label class="form-label">Your email</label>
+                            <input type="email" name="email" class="form-control" required value="{{ old('email') }}">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Subjek</label>
-                        <input type="text" name="subject" class="form-control" required>
+                        <input type="text" name="subject" class="form-control" required value="{{ old('subject') }}">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Pesan</label>
-                        <textarea class="form-control" name="message" rows="6" required></textarea>
+                        <textarea class="form-control" name="message" rows="6" required>{{ old('message') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Kirim Pesan</button>
                 </form>
