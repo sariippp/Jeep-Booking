@@ -21,6 +21,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->timestamp('time_paid');
             $table->double('total');
+            $table->string('payment_order_id');
             $table->timestamps();
         });
     }

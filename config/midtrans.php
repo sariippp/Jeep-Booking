@@ -12,8 +12,8 @@ return [
     */
 
     'is_production' => env('MIDTRANS_IS_PRODUCTION', false),
-    'server_key' => env('MIDTRANS_SERVER_KEY', ''),
-    'client_key' => env('MIDTRANS_CLIENT_KEY', ''),
+    'server_key' => env('MIDTRANS_SERVER_KEY'),
+    'client_key' => env('MIDTRANS_CLIENT_KEY'),
     'merchant_id' => env('MIDTRANS_MERCHANT_ID', ''),
     'notification_url' => env('MIDTRANS_NOTIFICATION_URL', 'api/midtrans/callback'),
     'finish_redirect_url' => env('MIDTRANS_FINISH_REDIRECT_URL', '/booking/confirmation/'),

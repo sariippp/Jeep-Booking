@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MidtransCallbackController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -32,7 +33,8 @@ Route::get('/booking/confirmation/{id}', [UserController::class, 'confirmation']
 Route::post('/pay-qris', [UserController::class, 'payWithQRIS'])->name('pay.qris');
 
 // Payment routes
-Route::get('/pay-qris', [UserController::class, 'payWithQRIS']);
+// Route::get('/pay-qris', [UserController::class, 'payWithQRIS']);
+Route::post('/midtrans/callback', [MidtransCallbackController::class, 'handleCallback'])->name('midtrans.callback');
 Route::post('/check-payment-status', [UserController::class, 'checkPaymentStatus']);
 
 

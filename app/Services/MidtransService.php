@@ -62,21 +62,25 @@ class MidtransService
             ];
         }
     }
+    
 
-    public function checkTransactionStatus($order_id)
-    {
-        try {
-            $status = Transaction::status($order_id);
-            return [
-                'success' => true,
-                'data' => $status
-            ];
-        } catch (\Exception $e) {
-            Log::error('Transaction Status Error: ' . $e->getMessage());
-            return [
-                'success' => false,
-                'message' => $e->getMessage()
-            ];
-        }
+    public function checkTransactionStatus($orderId)
+{
+    try {
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production', false);
+        
+        $status = Transaction::status($orderId);
+        
+        return [
+            'success' => true,
+            'data' => $status
+        ];
+    } catch (\Exception $e) {
+        return [
+            'success' => false,
+            'message' => $e->getMessage()
+        ];
     }
+}
 }
